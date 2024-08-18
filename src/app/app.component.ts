@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { apiurl, localapiurl } from '../configs/config';
 
 @Component({
   selector: 'app-root',
@@ -19,14 +20,12 @@ export class AppComponent {
   constructor(private http: HttpClient ){}
 
   getData(): Observable<any> {
-    return this.http.get<any>("https://localhost:7193/WeatherForecast");
+    return this.http.get<any>(apiurl+"weatherforecast/get/v2");
   }
 
-  apicall() : void{
+  apicall(): void{
     this.getData().subscribe(data => {
-      let summary = data[0].summary;
-      console.log(data[0].summary);
-    })
-
+      (data as Array<any>).forEach(d => console.log(d.summary));
+    });
   }
 }
