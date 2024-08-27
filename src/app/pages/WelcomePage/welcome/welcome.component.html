@@ -1,21 +1,26 @@
 <div class="flex justify-between">
   <h1 class="text-5xl font-semibold">Welcome to Website</h1>
-  <img src="../favicon.ico" class="w-[80px] h-[80px] "/>
+  <img src="../assets/Bluepeppa.jpg" class="w-[80px] h-[80px] "/>
 </div>
 
 <div class="background">
 </div>
 
-<div class="container">
-  <h1>Login Form</h1>
+<div class="container bg-white w-[80px] h-[380px] border-solid rounded-lg">
+  <h1 class="text-3xl font-semibold text-center mt-4">Login Form</h1>
+  <div class="toggle"> 
+    <button class="ml-3 px-4 py-1.5 rounded-lg btn-bg">Login</button>
+    <button class="ml-3 px-4 py-1.5 rounded-lg btn-bg">SignUp</button>
+  </div>
   <form class="mt-8">
     <div class="form-container">
-      <input placeholder="Email Address" name="Email"/>
-      <input placeholder="Password"/>
+      <input placeholder="Email Address" name="Email" type="email" class="mt-4 shadow appearance-none border-b-2 border-t border-l border-r rounded-lg py-3 px-2 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline ml-3 mr-3"/>
+      <input placeholder="Password" class="mt-4 shadow appearance-none border-b-2 border-t border-l border-r rounded-lg py-3 px-2 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline ml-3 mr-3"/>
     </div>
-    <button>Login</button>
-    <p>Not a member? SignUp Now</p>
+    <button class="mt-12 ml-3 px-28 py-1.5 rounded-lg btn-bg">Login</button>
+    <div class="text-center mt-5 text-[15px]">
+      <p>Not a member?<span class="text-blue-500">SignUp Now</span></p>
+    </div>
   </form>
 </div>
 
- 
