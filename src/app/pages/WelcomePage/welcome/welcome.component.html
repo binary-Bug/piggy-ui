@@ -9,13 +9,17 @@
   </div>
 
   <div class="background grid place-content-center">
-    <div class="container bg-white w-[80px] h-[380px] border-solid rounded-lg">
+    <div #con class="container bg-white w-[80px] h-[380px] border-solid rounded-lg">
       <h1 class="text-3xl font-semibold text-center mt-4">Login Form</h1>
-      <div class="toggle"> 
-        <button class="ml-3 px-4 py-1.5 rounded-lg btn-bg">Login</button>
-        <button class="ml-3 px-4 py-1.5 rounded-lg btn-bg">SignUp</button>
+      
+      <div class="slide-controls">
+        <input (click)="onToggleForm();updateClass(con)" type="radio" name="slide" id="login" checked>
+        <input (click)="onToggleForm();updateClass(con)" type="radio" name="slide" id="signup">
+        <label for="login" class="slide login">Login</label>
+        <label for="signup" class="slide signup">Signup</label>
+        <div class="slider-tab"></div>
       </div>
-      <form class="mt-8">
+      <form *ngIf="!isRegister" class="mt-5">
         <div class="form-container">
           <input placeholder="Email Address" name="Email" type="email" class="mt-4 shadow appearance-none border-b-2 border-t border-l border-r rounded-lg py-3 px-2 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline ml-3 mr-3"/>
           <input placeholder="Password" class="mt-4 shadow appearance-none border-b-2 border-t border-l border-r rounded-lg py-3 px-2 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline ml-3 mr-3"/>
@@ -23,6 +27,22 @@
         <button class="mt-12 ml-3 px-28 py-1.5 rounded-lg btn-bg">Login</button>
         <div class="text-center mt-5 text-[15px]">
           <p>Not a member?<span class="text-blue-500">SignUp Now</span></p>
+        </div>
+      </form>
+      <form *ngIf="isRegister" class="mt-5 grid grid-cols-1 place-content-center">
+        <div class="form-container">
+          <input placeholder="Email Address" name="Email" type="email" class="mt-4 shadow appearance-none border-b-2 border-t border-l border-r rounded-lg py-3 px-2 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline ml-3 mr-3"/>
+          <input placeholder="Password" class="mt-4 shadow appearance-none border-b-2 border-t border-l border-r rounded-lg py-3 px-2 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline ml-3 mr-3"/>
+          <input placeholder="Phone Number" name="Number" type="input" class="mt-4 shadow appearance-none border-b-2 border-t border-l border-r rounded-lg py-3 px-2 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline ml-3 mr-3"/>
+          <select name="Role" class="mt-4 shadow appearance-none border-b-2 border-t border-l border-r rounded-lg py-3 px-2 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline ml-3 mr-3">
+            <option value="default">Select a role</option>
+            <option value="test">test</option>
+            <option value="test2">test2</option>
+          </select>
+          
+        </div>
+        <div class="grid place-content-center" >
+        <button class="mt-6 px-24 py-1.5 rounded-lg btn-bg">Register</button>
         </div>
       </form>
     </div>
