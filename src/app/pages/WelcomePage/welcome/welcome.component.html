@@ -1,20 +1,20 @@
 <div class="grid grid-cols-1 flex justify-center">
   <div class="grid place-content-center grid-cols-1 lg:grid-cols-3">
     <div class="sm:max-lg:flex sm:max-lg:justify-center lg:col-span-2">
-      <h1 class="text-5xl font-semibold">Welcome to Piggy</h1>
+      <h1 class="text-xl sm:text-5xl font-semibold text-center lg:text-left">Welcome to Piggy</h1>
     </div>
-    <div class="flex sm:justify-center lg:justify-end">
-      <img src="../assets/logo.ico" class="w-[80px] h-[80px] "/>
+    <div class="flex justify-center lg:justify-end">
+      <img src="../assets/logo.ico" class="w-[60px] h-[60px] sm:w-[80px] sm:h-[80px] "/>
     </div>
   </div>
 
   <div class="background grid place-content-center">
-    <div #con class="container bg-white w-[80px] h-[380px] border-solid rounded-lg">
+    <div #con class="container bg-white border-solid rounded-lg">
       <h1 class="text-3xl font-semibold text-center mt-4">Login Form</h1>
       
       <div class="slide-controls">
-        <input (click)="onToggleForm();updateClass(con)" type="radio" name="slide" id="login" checked>
-        <input (click)="onToggleForm();updateClass(con)" type="radio" name="slide" id="signup">
+        <input (click)="onToggleForm()" type="radio" name="slide" id="login" checked>
+        <input (click)="onToggleForm()" type="radio" name="slide" id="signup">
         <label for="login" class="slide login">Login</label>
         <label for="signup" class="slide signup">Signup</label>
         <div class="slider-tab"></div>
@@ -24,7 +24,10 @@
           <input placeholder="Email Address" name="Email" type="email" class="mt-4 shadow appearance-none border-b-2 border-t border-l border-r rounded-lg py-3 px-2 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline ml-3 mr-3"/>
           <input placeholder="Password" class="mt-4 shadow appearance-none border-b-2 border-t border-l border-r rounded-lg py-3 px-2 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline ml-3 mr-3"/>
         </div>
-        <button class="mt-12 ml-3 px-28 py-1.5 rounded-lg btn-bg">Login</button>
+        <div>
+          <button class="mt-12 ml-3 mr-3  py-1.5 rounded-lg btn-bg" style="width: calc(100% - 24px);">Login</button>
+        </div>
+        
         <div class="text-center mt-5 text-[15px]">
           <p>Not a member?<span class="text-blue-500">SignUp Now</span></p>
         </div>
@@ -42,10 +45,9 @@
           
         </div>
         <div class="grid place-content-center" >
-        <button class="mt-6 px-24 py-1.5 rounded-lg btn-bg">Register</button>
+        <button class="mt-6 mb-4 ml-3 mr-3 px-24 py-1.5 rounded-lg btn-bg" style="width: calc(100% - 24px);">Register</button>
         </div>
       </form>
     </div>
   </div>
 </div>
-

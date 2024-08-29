@@ -15,3 +15,10 @@ body{
     padding: 3rem 3rem;
 }
 
+@media screen and (max-width:640px) {
+    body{
+        margin: 3rem 10px;
+        padding: 3rem 0px;
+    }
+  }
+
