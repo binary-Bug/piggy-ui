@@ -18,6 +18,7 @@ export class WelcomeComponent {
   constructor(private http: HttpClient,private router: Router) {}
 
   isRegister : boolean = false;
+  formTitle : string = 'Login Form';
 
   getData(): Observable<any> {
     return this.http.get<any>(apiurl + 'weatherforecast/get/v2');
@@ -25,6 +26,7 @@ export class WelcomeComponent {
 
   onToggleForm(): void {
     this.isRegister = !this.isRegister;
+    this.formTitle = this.isRegister ? 'Signup Form' : 'Login Form';
   }
 
   onLogin():void{
