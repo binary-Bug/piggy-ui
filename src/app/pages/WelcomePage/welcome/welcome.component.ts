@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { apiurl } from '../../../../configs/config';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-welcome',
@@ -13,7 +14,8 @@ import { CommonModule } from '@angular/common';
 })
 export class WelcomeComponent {
 
-  constructor(private http: HttpClient) {}
+
+  constructor(private http: HttpClient,private router: Router) {}
 
   isRegister : boolean = false;
 
@@ -23,6 +25,10 @@ export class WelcomeComponent {
 
   onToggleForm(): void {
     this.isRegister = !this.isRegister;
+  }
+
+  onLogin():void{
+    this.router.navigate(['home']);
   }
 
   updateClass(ele: HTMLDivElement): void {

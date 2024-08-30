@@ -1,4 +1,4 @@
-<div class="grid grid-cols-1 flex justify-center">
+<div class="main grid grid-cols-1 flex justify-center">
   <div class="grid place-content-center grid-cols-1 lg:grid-cols-3">
     <div class="sm:max-lg:flex sm:max-lg:justify-center lg:col-span-2">
       <h1 class="text-5xl font-semibold">Welcome to Piggy</h1>
@@ -19,17 +19,17 @@
         <label for="signup" class="slide signup">Signup</label>
         <div class="slider-tab"></div>
       </div>
-      <form *ngIf="!isRegister" class="mt-5">
+      <form *ngIf="!isRegister" class="mt-5" onsubmit="return false;">
         <div class="form-container">
           <input placeholder="Email Address" name="Email" type="email" class="mt-4 shadow appearance-none border-b-2 border-t border-l border-r rounded-lg py-3 px-2 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline ml-3 mr-3"/>
           <input placeholder="Password" class="mt-4 shadow appearance-none border-b-2 border-t border-l border-r rounded-lg py-3 px-2 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline ml-3 mr-3"/>
         </div>
-        <button class="mt-12 ml-3 px-28 py-1.5 rounded-lg btn-bg">Login</button>
+        <button (click)="onLogin()" class="mt-12 ml-3 px-28 py-1.5 rounded-lg btn-bg">Login</button>
         <div class="text-center mt-5 text-[15px]">
           <p>Not a member?<span class="text-blue-500">SignUp Now</span></p>
         </div>
       </form>
-      <form *ngIf="isRegister" class="mt-5 grid grid-cols-1 place-content-center">
+      <form *ngIf="isRegister" class="mt-5 grid grid-cols-1 place-content-center" onsubmit="return false;">
         <div class="form-container">
           <input placeholder="Email Address" name="Email" type="email" class="mt-4 shadow appearance-none border-b-2 border-t border-l border-r rounded-lg py-3 px-2 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline ml-3 mr-3"/>
           <input placeholder="Password" class="mt-4 shadow appearance-none border-b-2 border-t border-l border-r rounded-lg py-3 px-2 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline ml-3 mr-3"/>
