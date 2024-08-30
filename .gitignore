@@ -13,6 +13,8 @@ yarn-error.log
 
 # IDEs and editors
 .idea/
+.metadata/*
+.metadata/
 .project
 .classpath
 .c9/
