@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { apiurl, localapiurl } from '../configs/config';
-import { WelcomeComponent } from './pages/WelcomePage/welcome/welcome.component';
+import { WelcomeComponent } from './pages/welcome/welcome.component';
 
 @Component({
   selector: 'app-root',

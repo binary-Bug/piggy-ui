@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
-import { apiurl } from '../../../../configs/config';
+import { apiurl } from '../../../configs/config';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
