@@ -10,34 +10,35 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './welcome.component.html',
-  styleUrl: './welcome.component.css'
+  styleUrl: './welcome.component.css',
 })
 export class WelcomeComponent {
+  constructor(private http: HttpClient, private router: Router) {}
 
-
-  constructor(private http: HttpClient,private router: Router) {}
-
-  isRegister : boolean = false;
-  formTitle : string = 'Login Form';
+  isRegister: boolean = false;
+  formTitle: string = 'Login Form';
 
   getData(): Observable<any> {
     return this.http.get<any>(apiurl + 'weatherforecast/get/v2');
   }
 
-  onToggleForm(): void {
+  onToggleForm(
+    loginradio: HTMLInputElement,
+    signupradio: HTMLInputElement
+  ): void {
     this.isRegister = !this.isRegister;
     this.formTitle = this.isRegister ? 'Signup Form' : 'Login Form';
+    loginradio.checked = this.isRegister ? false : true;
+    signupradio.checked = this.isRegister;
   }
 
-  onLogin():void{
+  onLogin(): void {
     this.router.navigate(['home']);
   }
 
   updateClass(ele: HTMLDivElement): void {
-    if(this.isRegister)
-    ele.style.height = "480px";
-  else 
-  ele.style.height = "420px";
+    if (this.isRegister) ele.style.height = '480px';
+    else ele.style.height = '420px';
   }
 
   apicall(): void {
