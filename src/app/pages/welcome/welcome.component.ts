@@ -4,16 +4,35 @@ import { Observable } from 'rxjs/internal/Observable';
 import { apiurl } from '../../../configs/config';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import {
+  FormControl,
+  ReactiveFormsModule,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-welcome',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './welcome.component.html',
   styleUrl: './welcome.component.css',
 })
 export class WelcomeComponent {
-  constructor(private http: HttpClient, private router: Router) {}
+  form = new FormGroup({
+    roleSelect: new FormControl('default', Validators.minLength(2)),
+  });
+  constructor(private http: HttpClient, private router: Router) {
+    this.form.controls.roleSelect.valueChanges.subscribe(() => {
+      let ele: HTMLElement | null;
+      ele = document.getElementById('container');
+      if (this.form.controls.roleSelect.value === 'rowner') {
+        if (ele !== null) ele.style.height = '560px';
+      } else {
+        if (ele !== null) ele.style.height = '480px';
+      }
+    });
+  }
 
   isRegister: boolean = false;
   formTitle: string = 'Login Form';
@@ -37,8 +56,11 @@ export class WelcomeComponent {
   }
 
   updateClass(ele: HTMLDivElement): void {
-    if (this.isRegister) ele.style.height = '480px';
-    else ele.style.height = '420px';
+    if (this.isRegister) {
+      if (this.form.controls.roleSelect.value === 'rowner')
+        ele.style.height = '560px';
+      else ele.style.height = '480px';
+    } else ele.style.height = '420px';
   }
 
   apicall(): void {
