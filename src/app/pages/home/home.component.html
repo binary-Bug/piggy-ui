@@ -10,8 +10,17 @@
                 <option value="test2">test2</option>
             </select>
         </div>
+        <div class="mt-4 ml-8">
+            <p-dropdown 
+                [options]="cities" 
+                [(ngModel)]="selectedCity" 
+                optionLabel="name"
+                placeholder="Select a City"
+                class="hover:text-blue-500" />
+        </div>
     </div>
     <div class="flex items-center">
         <img src="../../../../assets/profilepic.png" alt="profile" class="w-[50px] h-[50px]"/>
     </div>
 </div>
+
