@@ -11,6 +11,8 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
+      - name: Branch Name
+        run: echo ${{github.ref}}
       - name: Trigger jenkins job
         uses: joshlk/jenkins-githubaction@master
         id: jenkins
@@ -21,6 +23,6 @@ jobs:
           timeout: "300"
           interval: "30"
           api_token: ${{ secrets.JENKINS_TOKEN }}
-          parameters: {"BranchName":${{github.ref}}}
+          #parameters: { "BranchName" }
       - name: Get job url
         run: echo "Job status is ${{ steps.jenkins.outputs.build_url }}"
