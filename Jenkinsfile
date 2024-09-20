@@ -1,6 +1,5 @@
 pipeline {
     agent any
-    tools {nodejs "NODEJS"}
     stages {
         stage('Verify node version') {
             steps {
@@ -12,14 +11,9 @@ pipeline {
                 sh 'npm --version'
             }
         }
-        stage('List files') {
-            steps {
-                sh 'ls'
-            }
-        }
         stage('Install Packages') {
             steps {
-                sh 'npm i smallest'
+                sh 'npm i'
             }
         }
         stage('Build') {
