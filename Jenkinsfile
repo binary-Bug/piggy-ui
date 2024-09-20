@@ -12,9 +12,14 @@ pipeline {
                 sh 'npm --version'
             }
         }
+        stage('List files') {
+            steps {
+                sh 'ls'
+            }
+        }
         stage('Install Packages') {
             steps {
-                sh 'npm install'
+                sh 'npm i smallest'
             }
         }
         stage('Build') {
