@@ -23,6 +23,6 @@ jobs:
           timeout: "300"
           interval: "30"
           api_token: ${{ secrets.JENKINS_TOKEN }}
-          parameters: '{"BranchName":"testbranch"}'
+          parameters: '{"BranchName":${{github.ref}}}'
       - name: Get job url
         run: echo "Job status is ${{ steps.jenkins.outputs.build_url }}"
