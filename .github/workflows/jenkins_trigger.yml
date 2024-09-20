@@ -6,7 +6,7 @@ on:
       - "!master"
       - "**"
 jobs:
-  # This workflow contains a single job called "build"
+  # This workflow contains a single job called "Trigger Jenkins"
   status_check:
     name: Trigger Jenkins Job
     runs-on: ubuntu-latest
