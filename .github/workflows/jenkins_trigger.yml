@@ -1,0 +1,26 @@
+name: Jenkins trigger 🤖👽
+
+on:
+  push:
+    branches:
+      - "!master"
+      - "**"
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger jenkins job
+        uses: joshlk/jenkins-githubaction@master
+        id: jenkins
+        with:
+          url: "http://binarybug-jenkins.centralindia.cloudapp.azure.com:8080/"
+          job_name: "testJob"
+          username: "binarybug"
+          api_token: "11f1a7e6c8f1bc1debba1ec77e77f96f2f"
+          parameters: {"BranchName":${{github.ref}}}
+          timeout: "300"
+          interval: "30"
+      - name: Get job url
+        run: echo "Job status is ${{ steps.jenkins.outputs.build_url }}"
