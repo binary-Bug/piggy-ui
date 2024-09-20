@@ -1,4 +1,4 @@
-name: Jenkins trigger 🤖👽
+name: UI Status Check 🤖👽
 
 on:
   push:
@@ -11,18 +11,16 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - name: Branch Name
-        run: echo ${{github.ref}}
       - name: Trigger jenkins job
         uses: joshlk/jenkins-githubaction@master
         id: jenkins
         with:
           url: "http://binarybug-jenkins.centralindia.cloudapp.azure.com:8080/"
-          job_name: "testJob"
+          job_name: "piggy_ui_status_check"
           username: "binarybug"
           timeout: "300"
           interval: "30"
           api_token: ${{ secrets.JENKINS_TOKEN }}
           parameters: '{"BranchName":"${{github.ref}}"}'
       - name: Get job url
-        run: echo "Job status is ${{ steps.jenkins.outputs.build_url }}"
+        run: echo "Job url is ${{ steps.jenkins.outputs.build_url }}"
