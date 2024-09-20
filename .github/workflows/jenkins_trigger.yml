@@ -16,7 +16,7 @@ jobs:
         id: jenkins
         with:
           url: "http://binarybug-jenkins.centralindia.cloudapp.azure.com:8080/"
-          job_name: "piggy_ui_status_check"
+          job_name: "testJob"
           username: "binarybug"
           timeout: "300"
           interval: "30"
