@@ -7,8 +7,8 @@ on:
       - "**"
 jobs:
   # This workflow contains a single job called "build"
-  build:
-    name: Build
+  status_check:
+    name: Trigger Jenkins Job
     runs-on: ubuntu-latest
     steps:
       - name: Trigger jenkins job
@@ -21,6 +21,6 @@ jobs:
           timeout: "300"
           interval: "30"
           api_token: ${{ secrets.JENKINS_TOKEN }}
-          parameters: '{"BranchName":"${{github.ref}}"}'
+          parameters: '{"Branc_hName":"${{github.ref}}"}'
       - name: Get job url
         run: echo "Job url is ${{ steps.jenkins.outputs.build_url }}"
