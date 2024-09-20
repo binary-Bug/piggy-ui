@@ -15,7 +15,7 @@ jobs:
         run: echo ${{github.ref}}
       - name: Trigger jenkins job
         uses: joshlk/jenkins-githubaction@master
-        id: jenkins
+        id: "jenkins"
         with:
           url: "http://binarybug-jenkins.centralindia.cloudapp.azure.com:8080/"
           job_name: "testJob"
