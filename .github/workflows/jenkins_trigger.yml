@@ -21,6 +21,6 @@ jobs:
           timeout: "300"
           interval: "30"
           api_token: ${{ secrets.JENKINS_TOKEN }}
-          parameters: '{"Branc_hName":"${{github.ref}}"}'
+          parameters: '{"Branch_Name":"${{github.ref}}"}'
       - name: Get job url
         run: echo "Job url is ${{ steps.jenkins.outputs.build_url }}"
