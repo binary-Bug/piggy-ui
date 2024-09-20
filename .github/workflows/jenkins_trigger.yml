@@ -18,7 +18,7 @@ jobs:
           url: "http://binarybug-jenkins.centralindia.cloudapp.azure.com:8080/"
           job_name: "testJob"
           username: "binarybug"
-          api_token: 11f1a7e6c8f1bc1debba1ec77e77f96f2f
+          api_token: ${{ secrets.JENKINS_TOKEN }}
           parameters: {"BranchName":${{github.ref}}}
           timeout: "300"
           interval: "30"
