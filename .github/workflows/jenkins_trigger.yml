@@ -1,10 +1,10 @@
 name: UI Pre Deploy Status Check 🤖👽
 
 on:
-  # push:
-  #   branches:
-  #     - "!master"
-  #     - "**"
+  push:
+    branches:
+      - "!master"
+      - "**"
   pull_request:
     types: [opened, reopened]
     branches:
