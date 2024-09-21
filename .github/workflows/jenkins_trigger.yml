@@ -1,4 +1,4 @@
-name: UI Status Check 🤖👽
+name: UI Pre Deploy Status Check 🤖👽
 
 on:
   push:
@@ -16,7 +16,7 @@ jobs:
         id: jenkins
         with:
           url: "http://binarybug-jenkins.centralindia.cloudapp.azure.com:8080/"
-          job_name: "piggy_ui_status_check"
+          job_name: "piggy_ui_pre_deploy_check"
           username: "binarybug"
           timeout: "600"
           interval: "30"
