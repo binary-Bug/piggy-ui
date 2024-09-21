@@ -39,10 +39,10 @@ pipeline {
                 dir('../') {
                     script{
                     pwd = pwd()
-                }
-                    echo "CLEARING $pwd"
-                    //sh 'rm -r *'
+                     echo "CLEARING $pwd"
+                    sh 'rm -r *'
                     echo "$pwd CLEANED"
+                    }   
                 }
             }
         }
