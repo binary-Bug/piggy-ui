@@ -10,8 +10,9 @@ pipeline {
         }
         stage('Verify node version') {
             steps {
-                powershell '''$x="ai-somename-someid"
-                            $y=$x.split("-")[1]'''
+                sh '''IN="bla@some.com;john@home.com"
+                    arrIN=(${IN//;/ })
+                    echo ${arrIN[1]}'''
             }
         }
         // stage('Verify node version') {
