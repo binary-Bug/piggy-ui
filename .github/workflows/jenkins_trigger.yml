@@ -20,9 +20,9 @@ jobs:
           limit: -1
       - name: print number
         run: |
-          ${{ steps.split.outputs._3 }}
-          ${{ steps.split.outputs._4 }}
-          ${{ steps.split.outputs._5 }}
+          echo ${{ steps.split.outputs._3 }}
+          echo ${{ steps.split.outputs._4 }}
+          echo ${{ steps.split.outputs._5 }}
       # - name: Trigger jenkins job
       #   uses: joshlk/jenkins-githubaction@master
       #   id: jenkins
