@@ -4,8 +4,14 @@ pipeline {
         stage('Set Build Name'){
             steps {
                 script {
-                    currentBuild.displayName = "#${params.Branch_Name} - ${BUILD_NUMBER}" 
+                    currentBuild.displayName = "#${params.Branch_Name} - v0.${BUILD_NUMBER}" 
                 }
+            }
+        }
+        stage('Verify node version') {
+            steps {
+                powershell '''$x="ai-somename-someid"
+                            $y=$x.split("-")[1]'''
             }
         }
         stage('Verify node version') {
@@ -18,14 +24,19 @@ pipeline {
                 sh 'npm --version'
             }
         }
-        stage('Install Packages') {
+        // stage('Install Packages') {
+        //     steps {
+        //         sh 'npm i'
+        //     }
+        // }
+        // stage('Build') {
+        //     steps {
+        //         sh 'npm run build'
+        //     }
+        // }
+        stage('Clear Workspace') {
             steps {
-                sh 'npm i'
-            }
-        }
-        stage('Build') {
-            steps {
-                sh 'npm run build'
+                sh 'sudo rm -r *'
             }
         }
         stage('Complete') {
