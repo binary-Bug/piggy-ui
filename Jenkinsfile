@@ -7,7 +7,7 @@ pipeline {
                     currentBuild.displayName = "#${params.Branch_Name} - v0.${BUILD_NUMBER}" 
                     IN="bla@some.com;john@home.com"
                     echo IN
-                    'arrIN = (${IN//;/ })'
+                    arrIN = (1 2 3 4)
                     echo ${arrIN[1]}
                 }
             }
