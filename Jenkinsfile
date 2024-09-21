@@ -30,15 +30,15 @@ pipeline {
         }
         stage('Clear Workspace') {
             steps {
-                // pwd = pwd()
-                // echo "CLEARING $pwd"
-                // sh 'rm -r *'
-                // echo "$pwd CLEANED"
+                pwd = pwd()
+                echo "CLEARING $pwd"
+                sh 'rm -r *'
+                echo "$pwd CLEANED"
                 dir('../..') {
-                    pwd = pwd()
-                    echo "CLEARING $pwd"
+                    //pwd = pwd()
+                    //echo "CLEARING pwd()"
                     sh 'rm -r *'
-                    echo "$pwd CLEANED"
+                    //echo "$pwd CLEANED"
                 }
             }
         }
