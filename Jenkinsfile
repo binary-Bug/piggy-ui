@@ -14,16 +14,16 @@ pipeline {
                             $y=$x.split("-")[1]'''
             }
         }
-        stage('Verify node version') {
-            steps {
-                sh 'node --version'
-            }
-        }
-        stage('Verify npm version') {
-            steps {
-                sh 'npm --version'
-            }
-        }
+        // stage('Verify node version') {
+        //     steps {
+        //         sh 'node --version'
+        //     }
+        // }
+        // stage('Verify npm version') {
+        //     steps {
+        //         sh 'npm --version'
+        //     }
+        // }
         // stage('Install Packages') {
         //     steps {
         //         sh 'npm i'
