@@ -1,6 +1,9 @@
 pipeline {
     agent any
     stages {
+        script {
+            currentBuild.displayName = "#${params.Branch_Name} - ${BUILD_NUMBER}" 
+        }
         stage('Verify node version') {
             steps {
                 sh 'node --version'
