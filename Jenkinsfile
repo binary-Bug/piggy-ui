@@ -4,7 +4,7 @@ pipeline {
         stage('Set Build Name'){
             steps {
                 script {
-                    currentBuild.displayName = "#${params.Branch_Name.split("/")[2].toUpperCase()}-v0.${BUILD_NUMBER}"
+                    currentBuild.displayName = "#${params.Branch_Name.split("/")[2].toUpperCase()}\n - v0.${BUILD_NUMBER}"
                 }
             }
         }
