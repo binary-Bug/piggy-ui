@@ -30,13 +30,17 @@ pipeline {
         }
         stage('Clear Workspace') {
             steps {
+                echo 'CLEARING' pwd()
                 sh 'rm -r *'
-                sh 'cd ..'
-                sh 'cd piggy_ui_pre_deploy_check@script'
-                sh 'rm -r *'
+                echo pwd() 'CLEANED'
+                dir('../..') {
+                    echo 'CLEARING' pwd()
+                    sh 'rm -r *'
+                    echo pwd() 'CLEANED'
+                }
             }
         }
-        stage('Complete') {
+        stage('Return Job Status to Github') {
             steps {
                 sh 'echo Completed'
             }
