@@ -30,7 +30,7 @@ jobs:
         uses: maxkomarychev/oction-create-release@v0.7.1
         id: my_step_id
         with:
-          token: ${{secrets.GITHUB_TOKEN}}
+          token: ${{secrets.GITHUB_TOKEN}}32555
           tag_name: v0.0.${{ steps.split.outputs._5 }}
       # - name: Trigger jenkins job
       #   uses: joshlk/jenkins-githubaction@master
