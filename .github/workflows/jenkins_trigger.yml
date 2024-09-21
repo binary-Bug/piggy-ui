@@ -18,7 +18,7 @@ jobs:
           url: "http://binarybug-jenkins.centralindia.cloudapp.azure.com:8080/"
           job_name: "piggy_ui_status_check"
           username: "binarybug"
-          timeout: "300"
+          timeout: "600"
           interval: "30"
           api_token: ${{ secrets.JENKINS_TOKEN }}
           parameters: '{"Branch_Name":"${{github.ref}}"}'
