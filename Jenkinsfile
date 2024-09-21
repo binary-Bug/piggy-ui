@@ -36,12 +36,12 @@ pipeline {
                 echo "CLEARING $pwd"
                 sh 'rm -r *'
                 echo "$pwd CLEANED"
-                dir('../..') {
+                dir('../') {
                     script{
                     pwd = pwd()
                 }
                     echo "CLEARING $pwd"
-                    sh 'rm -r *'
+                    //sh 'rm -r *'
                     echo "$pwd CLEANED"
                 }
             }
