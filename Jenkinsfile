@@ -4,8 +4,7 @@ pipeline {
         stage('Set Build Name'){
             steps {
                 script {
-                    currentBuild.displayName = "#${params.Branch_Name} - v0.${BUILD_NUMBER}" 
-                    echo "${params.Branch_Name.split("/")[2]}"
+                    currentBuild.displayName = "#${params.Branch_Name.split("/")[2].toUpperCase()} - v0.${BUILD_NUMBER}"
                 }
             }
         }
@@ -40,7 +39,7 @@ pipeline {
         // }
         stage('Clear Workspace') {
             steps {
-                sh 'sudo rm -r *'
+                sh 'rm -r *'
             }
         }
         stage('Complete') {
