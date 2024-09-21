@@ -30,13 +30,13 @@ pipeline {
         }
         stage('Clear Workspace') {
             steps {
-                echo 'CLEARING' pwd()
+                echo "CLEARING" pwd()
                 sh 'rm -r *'
-                echo pwd() 'CLEANED'
+                echo pwd() "CLEANED"
                 dir('../..') {
-                    echo 'CLEARING' pwd()
+                    echo "CLEARING" pwd()
                     sh 'rm -r *'
-                    echo pwd() 'CLEANED'
+                    echo pwd() "CLEANED"
                 }
             }
         }
