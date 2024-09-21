@@ -26,15 +26,12 @@ jobs:
         run: |
           echo ${{ steps.split.outputs._5 }}
           echo ${{github.ref}}
-       - uses: maxkomarychev/oction-create-release@v0.7.1
-         id: my_step_id
-         with:
-         token: ${{ secrets.JENKINS_TOKEN }}
-         tag_name: v0.0.${{ steps.split.outputs._5 }}
-       - name: Print outputs
-         run: |
-           echo ${{ steps.my_step_id.outputs.id }}
-           echo ${{ steps.my_step_id.outputs.number }}
+      - name: relase
+        uses: maxkomarychev/oction-create-release@v0.7.1
+        id: my_step_id
+        with:
+          token: ${{ secrets.JENKINS_TOKEN }}
+          tag_name: v0.0.${{ steps.split.outputs._5 }}
       # - name: Trigger jenkins job
       #   uses: joshlk/jenkins-githubaction@master
       #   id: jenkins
