@@ -5,16 +5,21 @@ pipeline {
             steps {
                 script {
                     currentBuild.displayName = "#${params.Branch_Name} - v0.${BUILD_NUMBER}" 
+                    IN="bla@some.com;john@home.com"
+                    arrIN = (${IN//;/ })
+                    echo ${arrIN[1]}
                 }
             }
         }
-        stage('Verify node version') {
-            steps {
-                sh '''IN="bla@some.com;john@home.com"
-                    arrIN=(${IN//;/ })
-                    echo ${arrIN[1]}'''
-            }
-        }
+        // stage('Verify node version') {
+        //     steps {
+        //         sh '#!/bin/bash
+        //         IN="bla@some.com;john@home.com"
+        //             arrIN=(${IN//;/ })
+        //             ' > sc.sh
+        //         sh ./scriptname.sh
+        //     }
+        // }
         // stage('Verify node version') {
         //     steps {
         //         sh 'node --version'
