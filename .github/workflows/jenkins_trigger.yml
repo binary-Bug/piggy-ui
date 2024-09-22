@@ -38,6 +38,7 @@ jobs:
       #     separator: /
       #     limit: -1
       - name: Calculate Build Number
+        id: calc
         uses: yk1028/yk1028-calc-action@v0.0.2
         with:
           x: ${{ 44 }}
