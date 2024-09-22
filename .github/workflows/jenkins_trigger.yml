@@ -3,8 +3,8 @@ name: UI Pre Deploy Status Check 🤖👽
 on:
   push:
     branches:
-      - "!jenkins_actions_test"
       - "**"
+      - "!jenkins_actions_test"
   pull_request:
     types: [opened, reopened]
     branches:
