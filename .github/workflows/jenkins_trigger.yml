@@ -30,8 +30,12 @@ jobs:
         uses: maxkomarychev/oction-create-release@v0.7.1
         id: my_step_id
         with:
-          token: ${{secrets.GITHUB_TOKEN}}32555
+          token: ${{secrets.GITHUB_TOKEN}}
           tag_name: v0.0.${{ steps.split.outputs._5 }}
+          target_commitish: ${{github.ref}}
+          prerelease: true
+          name: "Baseline"
+          body: "This Release was created through github actions"
       # - name: Trigger jenkins job
       #   uses: joshlk/jenkins-githubaction@master
       #   id: jenkins
