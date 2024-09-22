@@ -1,10 +1,10 @@
-name: UI Pre Deploy Status Check 🤖👽
+name: UI Pre Master Merge Status Check 🤖👽
 
 on:
   push:
     branches:
       - "**"
-      - "!jenkins_actions_test"
+      - "!master"
   pull_request:
     types: [opened, reopened]
     branches:
@@ -12,30 +12,9 @@ on:
 jobs:
   # This workflow contains a job called "Trigger Jenkins"
   status_check:
-    name: Trigger Jenkins Job
+    name: Status Check
     runs-on: ubuntu-latest
     steps:
-      - name: Split version code
-        uses: xom9ikk/split@v1
-        id: split
-        with:
-          string: http://binarybug-jenkins.centralindia.cloudapp.azure.com:8080/job/piggy_ui_pre_deploy_check/45/
-          separator: /
-          limit: -1
-      - name: print number
-        run: |
-          echo ${{ steps.split.outputs._5 }}
-          echo ${{github.ref}}
-      - name: relase
-        uses: maxkomarychev/oction-create-release@v0.7.1
-        id: my_step_id
-        with:
-          token: ${{secrets.GITHUB_TOKEN}}
-          tag_name: v0.0.${{ steps.split.outputs._5 }}
-          target_commitish: ${{github.ref}}
-          #prerelease: true
-          name: "Baseline"
-          body: "This Release was created through github actions"
       # - name: Trigger jenkins job
       #   uses: joshlk/jenkins-githubaction@master
       #   id: jenkins
@@ -47,7 +26,35 @@ jobs:
       #     interval: "30"
       #     api_token: ${{ secrets.JENKINS_TOKEN }}
       #     parameters: '{"Branch_Name":"${{github.ref}}",
-      #                   "MAJOR":"0",
-      #                   "MINOR":"0"}'
+      #       "MAJOR":"0",
+      #       "MINOR":"0"}'
       # - name: Get job url
       #   run: echo "Job url is ${{ steps.jenkins.outputs.build_url }}"
+      # - name: Split Build Number From Job URL
+      #   uses: xom9ikk/split@v1
+      #   id: split
+      #   with:
+      #     string: ${{ steps.jenkins.outputs.build_url }}
+      #     separator: /
+      #     limit: -1
+      # - name: Calculate Build Number
+      #   uses: yk1028/yk1028-calc-action@v0.0.2
+      #   with:
+      #     x: ${{ steps.split.outputs._5 }}
+      #     y: 1
+      # - name: Print Build Number
+      #   run: |
+      #     echo "x - y = ${{ steps.calc.outputs.minus }}"
+      - name: test
+        run: |
+          echo "(${{ 44 }} - ${{ 1 }})"
+      # - name: Create Release
+      #   uses: maxkomarychev/oction-create-release@v0.7.1
+      #   id: my_step_id
+      #   with:
+      #     token: ${{secrets.GITHUB_TOKEN}}
+      #     tag_name: v$MAJOR.$MINOR.${{ steps.split.outputs._5 }}
+      #     target_commitish: ${{github.ref}}
+      #     name: "${{github.ref}} v$MINOR.$MINOR.${{ steps.split.outputs._5 }}"
+      #     body: "This Release was created through github actions"
+      #     prerelease: true
