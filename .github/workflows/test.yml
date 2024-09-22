@@ -1,4 +1,4 @@
-name: UI Pre Deploy Status Check 🤖👽
+name: test
 
 on:
   push:
