@@ -47,8 +47,8 @@ jobs:
         run: |
           echo "x - y = ${{ steps.calc.outputs.minus }}"
       - name: test
-        run: |
-          echo "(${{ 44 }} - ${{ 1 }})"
+        run: echo "(${{ 44 }} - ${{ 1 }})"
+        shell: bash
       # - name: Create Release
       #   uses: maxkomarychev/oction-create-release@v0.7.1
       #   id: my_step_id
