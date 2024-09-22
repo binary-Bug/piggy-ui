@@ -1,0 +1,32 @@
+name: UI Pre Deploy Status Check 🤖👽
+
+on:
+  push:
+    branches:
+      - "jenkins_actions_test"
+jobs:
+  # This workflow contains a job called "Trigger Jenkins"
+  status_check:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Split version code
+        uses: xom9ikk/split@v1
+        id: split
+        with:
+          string: http://binarybug-jenkins.centralindia.cloudapp.azure.com:8080/job/piggy_ui_pre_deploy_check/45/
+          separator: /
+          limit: -1
+      - name: print
+        run: |
+          echo ${{ steps.split.outputs._5 }}
+          echo ${{github.ref}}
+      - name: relase
+        uses: maxkomarychev/oction-create-release@v0.7.1
+        id: my_step_id
+        with:
+          token: ${{secrets.GITHUB_TOKEN}}
+          tag_name: v0.0.${{ steps.split.outputs._5 }}
+          target_commitish: ${{github.ref}}
+          name: "master"
+          body: "This Release was created through github actions"
