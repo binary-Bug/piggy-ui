@@ -37,14 +37,14 @@ jobs:
       #     string: ${{ steps.jenkins.outputs.build_url }}
       #     separator: /
       #     limit: -1
-      # - name: Calculate Build Number
-      #   uses: yk1028/yk1028-calc-action@v0.0.2
-      #   with:
-      #     x: ${{ steps.split.outputs._5 }}
-      #     y: 1
-      # - name: Print Build Number
-      #   run: |
-      #     echo "x - y = ${{ steps.calc.outputs.minus }}"
+      - name: Calculate Build Number
+        uses: yk1028/yk1028-calc-action@v0.0.2
+        with:
+          x: ${{ steps.split.outputs._5 }}
+          y: 1
+      - name: Print Build Number
+        run: |
+          echo "x - y = ${{ steps.calc.outputs.minus }}"
       - name: test
         run: |
           echo "(${{ 44 }} - ${{ 1 }})"
