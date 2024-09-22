@@ -19,7 +19,7 @@ jobs:
         uses: xom9ikk/split@v1
         id: split
         with:
-          string: http://binarybug-jenkins.centralindia.cloudapp.azure.com:8080/job/piggy_ui_pre_deploy_check/44/
+          string: http://binarybug-jenkins.centralindia.cloudapp.azure.com:8080/job/piggy_ui_pre_deploy_check/45/
           separator: /
           limit: -1
       - name: print number
@@ -33,7 +33,7 @@ jobs:
           token: ${{secrets.GITHUB_TOKEN}}
           tag_name: v0.0.${{ steps.split.outputs._5 }}
           target_commitish: ${{github.ref}}
-          prerelease: true
+          #prerelease: true
           name: "Baseline"
           body: "This Release was created through github actions"
       # - name: Trigger jenkins job
