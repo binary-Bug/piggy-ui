@@ -1,0 +1,13 @@
+on: workflow_dispatch
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+          gh variable list
+          gh variable set MAJOR --body "Set from workflow"
+          gh variable list
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
