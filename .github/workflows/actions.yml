@@ -21,12 +21,11 @@ jobs:
           GITHUB_TOKEN: ${{secrets.TOKEN}}
   GET_MINOR_VERSION:
     runs-on: ubuntu-latest
-    env:
-      MINOR: ${{vars.MINOR}}
     steps:
-      - name: GET Minor Version
-        run: |
-          echo "${{env.MINOR}}"
+      - name: Sleep for 30 seconds
+        uses: jakejarvis/wait-action@master
+        with:
+          time: "30s"
       - uses: actions/checkout@v3
       - run: |
           gh variable get MINOR
