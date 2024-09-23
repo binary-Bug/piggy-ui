@@ -8,10 +8,9 @@ jobs:
   comment:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
       - run: |
           gh variable list
-          gh variable set MAJOR --body "Set from workflow"
+          gh variable set MAJOR --body "Set from workflow second time"
           gh variable list
         env:
           GITHUB_TOKEN: ${{secrets.TOKEN}}
