@@ -21,7 +21,7 @@ jobs:
           GITHUB_TOKEN: ${{secrets.TOKEN}}
       - name: Get Minor Version
         env:
-          MINOR: ${{ vars.MINOR }}
+          MINOR: ${{steps.calc.outputs.plus}}
         run: |
           echo "${{env.MINOR}}"
       - name: Get Minor Version
@@ -29,13 +29,8 @@ jobs:
           MINOR: ${{ vars.MINOR }}
         run: |
           echo "${{env.MINOR}}"
-      - name: Sleep for 30 seconds
-        uses: jakejarvis/wait-action@master
-        with:
-          time: "10s"
-      - uses: actions/checkout@v3
       - name: Get Minor Version
         env:
-          MINOR: ${{ vars.MINOR }}
+          MINOR: ${{steps.calc.outputs.plus}}
         run: |
           echo "${{env.MINOR}}"
