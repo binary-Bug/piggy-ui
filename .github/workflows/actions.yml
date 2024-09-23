@@ -27,6 +27,8 @@ jobs:
       - name: GET Minor Version
         run: |
           echo "${{env.MINOR}}"
-      - name: Get Minor Version direcly
-        run: |
-          echo "${{env.MINOR}}"
+      - uses: actions/checkout@v3
+      - run: |
+          gh variable get MINOR
+        env:
+          GITHUB_TOKEN: ${{secrets.TOKEN}}
