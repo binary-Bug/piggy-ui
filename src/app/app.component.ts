@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.spinner.show();
     this.http
-      .get<any>(apiurl + 'establish_api_and_dbconnection')
+      .get<any>(apiurl + 'connection/establish-dbconnection')
       .subscribe((res) => {
         console.log(res);
         this.spinner.hide();
