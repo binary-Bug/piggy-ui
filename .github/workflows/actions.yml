@@ -3,8 +3,6 @@ on:
     branches:
       - actionsTest
   workflow_dispatch:
-env:
-  MINOR: 0
 
 jobs:
   updateMinorVersion:
@@ -21,9 +19,13 @@ jobs:
           gh variable set MINOR --body "${{steps.calc.outputs.plus}}"
         env:
           GITHUB_TOKEN: ${{secrets.TOKEN}}
-      - name: Get Minor Version
+  GET_MINOR_VERSION:
+    runs-on: ubuntu-latest
+    evv:
+      MINOR: ${{vars.MINOR}}
+    steps:
+      - name: GET Minor Version
         run: |
-          env.MINOR= ${{steps.calc.outputs.plus}}
           echo "${{env.MINOR}}"
       - name: Get Minor Version direcly
         run: |
