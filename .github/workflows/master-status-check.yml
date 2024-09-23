@@ -19,8 +19,8 @@ jobs:
         with:
           x: ${{ vars.MINOR }}
           y: 1
+      - uses: actions/checkout@v3
       - name: Update Minor Version Repo Variable
-        uses: actions/checkout@v3
         run: |
           gh variable set MINOR --body "${{steps.minor.outputs.plus}}"
         env:
