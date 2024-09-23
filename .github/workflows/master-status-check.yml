@@ -5,8 +5,7 @@ on:
     branches:
       - "master"
 env:
-  MAJOR: "0"
-  MINOR: "1"
+  MAJOR: ${{ vars.MAJOR }}
 
 jobs:
   # This workflow contains a job called "Trigger Jenkins"
@@ -14,6 +13,18 @@ jobs:
     name: Master Status Check
     runs-on: ubuntu-latest
     steps:
+      - name: Calculate Minor Version
+        id: minor
+        uses: yk1028/yk1028-calc-action@v0.0.2
+        with:
+          x: ${{ vars.MINOR }}
+          y: 1
+      - name: Update Minor Version Repo Variable
+        uses: actions/checkout@v3
+        run: |
+          gh variable set MINOR --body "${{steps.minor.outputs.plus}}"
+        env:
+          GITHUB_TOKEN: ${{secrets.TOKEN}}
       - name: Trigger jenkins reset-job-build-number job
         uses: joshlk/jenkins-githubaction@master
         with:
@@ -34,7 +45,7 @@ jobs:
           timeout: "600"
           interval: "30"
           api_token: ${{ secrets.JENKINS_TOKEN }}
-          parameters: '{"Branch_Name":"${{github.ref}}","MAJOR":"${{env.MAJOR}}","MINOR":"${{env.MINOR}}"}'
+          parameters: '{"Branch_Name":"${{github.ref}}","MAJOR":"${{env.MAJOR}}","MINOR":"${{steps.minor.outputs.plus}}"}'
       - name: Get Job URL
         run: echo "Job url is ${{ steps.jenkins.outputs.build_url }}"
       - name: Split Build Number From Job URL
@@ -58,7 +69,7 @@ jobs:
         id: my_step_id
         with:
           token: ${{secrets.GITHUB_TOKEN}}
-          tag_name: v${{env.MAJOR}}.${{env.MINOR}}.${{ steps.calc.outputs.minus }}
+          tag_name: v${{env.MAJOR}}.${{steps.minor.outputs.plus}}.${{ steps.calc.outputs.minus }}
           target_commitish: ${{github.ref}}
-          name: "master v${{env.MAJOR}}.${{env.MINOR}}.${{ steps.calc.outputs.minus }}"
+          name: "master v${{env.MAJOR}}.${{steps.minor.outputs.plus}}.${{ steps.calc.outputs.minus }}"
           body: "This Release was created through github actions"

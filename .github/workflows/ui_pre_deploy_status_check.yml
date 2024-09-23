@@ -10,8 +10,8 @@ on:
     branches:
       - "master"
 env:
-  MAJOR: "0"
-  MINOR: "1"
+  MAJOR: ${{ vars.MAJOR }}
+  MINOR: ${{ vars.MINOR }}
 jobs:
   # This workflow contains a job called "Trigger Jenkins"
   status_check:
