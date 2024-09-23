@@ -21,7 +21,7 @@ jobs:
           GITHUB_TOKEN: ${{secrets.TOKEN}}
   GET_MINOR_VERSION:
     runs-on: ubuntu-latest
-    evv:
+    env:
       MINOR: ${{vars.MINOR}}
     steps:
       - name: GET Minor Version
