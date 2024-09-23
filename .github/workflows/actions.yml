@@ -14,4 +14,4 @@ jobs:
           gh variable set MAJOR --body "Set from workflow"
           gh variable list
         env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          GITHUB_TOKEN: ${{secrets.TOKEN}}
