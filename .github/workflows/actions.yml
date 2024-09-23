@@ -24,13 +24,6 @@ jobs:
           MINOR: ${{steps.calc.outputs.plus}}
         run: |
           echo "${{env.MINOR}}"
-      - name: Get Minor Version
-        env:
-          MINOR: ${{ vars.MINOR }}
-        run: |
-          echo "${{env.MINOR}}"
-      - name: Get Minor Version
-        env:
-          MINOR: ${{steps.calc.outputs.plus}}
+      - name: Get Minor Version direcly
         run: |
           echo "${{env.MINOR}}"
