@@ -1,4 +1,8 @@
-on: workflow_dispatch
+on:
+  push:
+    branches:
+      - actionsTest
+  workflow_dispatch:
 
 jobs:
   comment:
