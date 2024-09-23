@@ -23,7 +23,7 @@ jobs:
           GITHUB_TOKEN: ${{secrets.TOKEN}}
       - name: Get Minor Version
         run: |
-          ${{env.MINOR}}: ${{steps.calc.outputs.plus}}
+          ${{env.MINOR}}= ${{steps.calc.outputs.plus}}
           echo "${{env.MINOR}}"
       - name: Get Minor Version direcly
         run: |
