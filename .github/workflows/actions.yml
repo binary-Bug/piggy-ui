@@ -24,3 +24,13 @@ jobs:
           MINOR: ${{ vars.MINOR }}
         run: |
           echo "${{env.MINOR}}"
+      - name: Get Minor Version
+        env:
+          MINOR: ${{ vars.MINOR }}
+        run: |
+          echo "${{env.MINOR}}"
+      - name: Get Minor Version
+        env:
+          MINOR: ${{ vars.MINOR }}
+        run: |
+          echo "${{env.MINOR}}"
