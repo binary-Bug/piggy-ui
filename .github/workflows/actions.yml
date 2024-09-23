@@ -20,7 +20,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{secrets.TOKEN}}
       - name: Get Minor Version
-      - env:
+        env:
           MINOR: ${{ vars.MINOR }}
         run: |
           echo "${{env.MINOR}}"
