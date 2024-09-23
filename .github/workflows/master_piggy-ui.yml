@@ -2,7 +2,7 @@ name: Deploy 🚀🚀
 
 on:
   workflow_run:
-    workflows: ["UI Pre Master Merge Status Check 🤖👽"]
+    workflows: ["UI Master Status Check 🤠"]
     types: [completed]
   workflow_dispatch:
 
