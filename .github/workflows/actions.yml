@@ -8,6 +8,7 @@ jobs:
   comment:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - run: |
           gh variable list
           gh variable set MAJOR --body "Set from workflow second time"
