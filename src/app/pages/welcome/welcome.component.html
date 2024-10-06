@@ -16,13 +16,19 @@
   </div>
 
   <div class="p-[50px] background grid place-content-center">
-    <div #con class="container bg-white border-solid rounded-lg" id="container">
+    <div
+      #formContainer
+      class="container bg-white border-solid rounded-lg"
+      id="container"
+    >
       <h1 class="text-3xl font-semibold text-center mt-4">{{ formTitle }}</h1>
 
       <div class="slide-controls">
         <input
           #loginRadio
-          (click)="onToggleForm(loginRadio, signupRadio); updateClass(con)"
+          (click)="
+            onToggleForm(loginRadio, signupRadio); updateClass(formContainer)
+          "
           type="radio"
           name="slide"
           id="login"
@@ -30,7 +36,9 @@
         />
         <input
           #signupRadio
-          (click)="onToggleForm(loginRadio, signupRadio); updateClass(con)"
+          (click)="
+            onToggleForm(loginRadio, signupRadio); updateClass(formContainer)
+          "
           type="radio"
           name="slide"
           id="signup"
@@ -39,16 +47,28 @@
         <label for="signup" class="slide signup">Signup</label>
         <div class="slider-tab"></div>
       </div>
-      <form *ngIf="!isRegister" class="mt-5" onsubmit="return false;">
+      <form
+        [formGroup]="loginForm"
+        *ngIf="!isRegister"
+        class="mt-5"
+        onsubmit="return false;"
+      >
         <div class="form-container">
           <input
-            placeholder="Email Address"
+            placeholder="Username/Email Address"
+            formControlName="loginEmail"
+            id="loginEmail"
             name="Email"
             type="email"
+            aria-autocomplete="none"
             class="mt-4 shadow appearance-none border-b-2 border-t border-l border-r rounded-lg py-3 px-2 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline ml-3 mr-3"
           />
           <input
             placeholder="Password"
+            formControlName="loginPassword"
+            id="loginPassword"
+            type="password"
+            aria-autocomplete="none"
             class="mt-4 shadow appearance-none border-b-2 border-t border-l border-r rounded-lg py-3 px-2 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline ml-3 mr-3"
           />
         </div>
@@ -57,6 +77,11 @@
             (click)="onLogin()"
             class="mt-12 ml-3 mr-3 py-1.5 rounded-lg btn-bg"
             style="width: calc(100% - 24px)"
+            [attr.disabled]="this.loginForm.valid ? null : 'false'"
+            [ngClass]="{
+              formSubmitDisable: !this.loginForm.valid,
+              formSubmitEnable: this.loginForm.valid
+            }"
           >
             Login
           </button>
@@ -64,7 +89,10 @@
         <div class="text-center mt-5 text-[15px]">
           <p>
             Not a member?<span
-              (click)="onToggleForm(loginRadio, signupRadio)"
+              (click)="
+                onToggleForm(loginRadio, signupRadio);
+                updateClass(formContainer)
+              "
               class="text-blue-500"
               style="cursor: context-menu"
               ><a>SignUp Now</a></span
@@ -73,7 +101,7 @@
         </div>
       </form>
       <form
-        [formGroup]="form"
+        [formGroup]="registerform"
         *ngIf="isRegister"
         class="mt-5 grid grid-cols-1 place-content-center"
         onsubmit="return false;"
@@ -81,33 +109,66 @@
         <div class="form-container">
           <input
             placeholder="Email Address"
+            formControlName="registerEmail"
+            id="registerEmail"
             name="Email"
             type="email"
+            aria-autocomplete="none"
+            class="mt-4 shadow appearance-none border-b-2 border-t border-l border-r rounded-lg py-3 px-2 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline ml-3 mr-3"
+          />
+          <input
+            placeholder="Username"
+            formControlName="registerUsername"
+            id="registerUsername"
+            aria-autocomplete="none"
             class="mt-4 shadow appearance-none border-b-2 border-t border-l border-r rounded-lg py-3 px-2 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline ml-3 mr-3"
           />
           <input
             placeholder="Password"
+            type="password"
+            aria-autocomplete="none"
+            formControlName="registerPassword"
+            id="registerPassword"
             class="mt-4 shadow appearance-none border-b-2 border-t border-l border-r rounded-lg py-3 px-2 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline ml-3 mr-3"
           />
           <input
             placeholder="Phone Number"
             name="Number"
-            type="input"
+            aria-autocomplete="none"
+            formControlName="registerNumber"
+            id="registerNumber"
             class="mt-4 shadow appearance-none border-b-2 border-t border-l border-r rounded-lg py-3 px-2 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline ml-3 mr-3"
           />
           <select
             formControlName="roleSelect"
+            id="roleSelect"
             name="Role"
+            aria-autocomplete="none"
             class="mt-4 shadow border-b-2 border-t border-l border-r rounded-lg py-3 px-2 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline ml-3 mr-3"
           >
-            <option value="default" hidden>Select a role</option>
+            <option value="none" hidden>Select a role</option>
             <option value="user">User</option>
             <option value="rowner">Restaurant Owner</option>
           </select>
+          <select
+            *ngIf="registerform.controls.roleSelect.value === 'user'"
+            formControlName="regionSelect"
+            id="regionSelect"
+            name="Region"
+            aria-autocomplete="none"
+            class="mt-4 shadow border-b-2 border-t border-l border-r rounded-lg py-3 px-2 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline ml-3 mr-3"
+          >
+            <option value="none" hidden>Select a region</option>
+            <option value="vin">Vinland</option>
+            <option value="got">Gotham</option>
+          </select>
           <input
-            *ngIf="form.controls.roleSelect.value === 'rowner'"
+            *ngIf="registerform.controls.roleSelect.value === 'rowner'"
             placeholder="Restaurant Name"
+            formControlName="restaurentName"
+            id="restaurentName"
             name="ResName"
+            aria-autocomplete="none"
             type="input"
             class="mt-4 shadow appearance-none border-b-2 border-t border-l border-r rounded-lg py-3 px-2 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline ml-3 mr-3"
           />
@@ -116,6 +177,12 @@
           <button
             class="mt-6 mb-4 ml-3 mr-3 px-24 py-1.5 rounded-lg btn-bg"
             style="width: calc(100% - 24px)"
+            [attr.disabled]="this.registerform.valid ? null : 'false'"
+            [ngClass]="{
+              formSubmitDisable: !this.registerform.valid,
+              formSubmitEnable: this.registerform.valid
+            }"
+            (click)="onRegister()"
           >
             Register
           </button>
