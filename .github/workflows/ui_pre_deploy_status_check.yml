@@ -1,14 +1,14 @@
 name: UI Pre Master Merge Status Check 🤖👽
 
 on:
-  # push:
-  #   branches:
-  #     - "**"
-  #     - "!master"
-  # pull_request:
-  #   types: [opened, reopened]
-  #   branches:
-  #     - "master"
+  push:
+    branches:
+      - "**"
+      - "!master"
+  pull_request:
+    types: [opened, reopened]
+    branches:
+      - "master"
   workflow_dispatch:
 env:
   MAJOR: ${{ vars.MAJOR }}

@@ -5,6 +5,10 @@ on:
     workflows: ["UI Master Status Check 🤠"]
     types: [completed]
   workflow_dispatch:
+env:
+  MAJOR: ${{ vars.MAJOR }}
+  MINOR: ${{ vars.MINOR }}
+  PATCH: "0"
 
 jobs:
   build:
@@ -12,6 +16,14 @@ jobs:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - uses: actions/checkout@v4
+
+      - name: Update version.json
+        run: |
+          cd src/configs
+          cat version.json
+          rm version.json
+          echo '{"version": "v${{env.MAJOR}}.${{env.MINOR}}.${{env.PATCH}}"}' > version.json
+          cat version.json
 
       - name: Set up Node.js version
         uses: actions/setup-node@v3

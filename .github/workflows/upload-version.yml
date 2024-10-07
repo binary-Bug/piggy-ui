@@ -1,9 +1,9 @@
 name: upload version
 
 on:
-  push:
-    branches:
-      - "**"
+  # push:
+  #   branches:
+  #     - "**"
   workflow_dispatch:
 env:
   MAJOR: ${{ vars.MAJOR }}

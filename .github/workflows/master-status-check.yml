@@ -1,9 +1,9 @@
 name: UI Master Status Check 🤠
 
 on:
-  # push:
-  #   branches:
-  #     - "master"
+  push:
+    branches:
+      - "master"
   workflow_dispatch:
 env:
   MAJOR: ${{ vars.MAJOR }}
