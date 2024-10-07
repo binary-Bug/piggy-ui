@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - "master"
+  workflow_dispatch:
 env:
   MAJOR: ${{ vars.MAJOR }}
 
@@ -20,11 +21,6 @@ jobs:
           x: ${{ vars.MINOR }}
           y: 1
       - uses: actions/checkout@v3
-      - name: Update Minor Version Repo Variable
-        run: |
-          gh variable set MINOR --body "${{steps.minor.outputs.plus}}"
-        env:
-          GITHUB_TOKEN: ${{secrets.TOKEN}}
       - name: Trigger jenkins reset-job-build-number job
         uses: joshlk/jenkins-githubaction@master
         with:
@@ -42,7 +38,7 @@ jobs:
           url: "http://binarybug-jenkins.centralindia.cloudapp.azure.com:8080/"
           job_name: "piggy_ui_pre_deploy_check"
           username: "binarybug"
-          timeout: "600"
+          timeout: "900"
           interval: "30"
           api_token: ${{ secrets.JENKINS_TOKEN }}
           parameters: '{"Branch_Name":"${{github.ref}}","MAJOR":"${{env.MAJOR}}","MINOR":"${{steps.minor.outputs.plus}}"}'
@@ -64,6 +60,11 @@ jobs:
       - name: Print Patch Number
         run: |
           echo "${{ steps.calc.outputs.minus }}"
+      - name: Update Minor Version Repo Variable
+        run: |
+          gh variable set MINOR --body "${{steps.minor.outputs.plus}}"
+        env:
+          GITHUB_TOKEN: ${{secrets.TOKEN}}
       - name: Create Release
         uses: maxkomarychev/oction-create-release@v0.7.1
         id: my_step_id

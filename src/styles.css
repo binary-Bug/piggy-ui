@@ -1,4 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,16 +12,3 @@
     box-sizing: border-box;
     font-family: 'poppins';
 }
-
-body{
-    margin: 3rem 3rem;
-    padding: 3rem 3rem;
-}
-
-@media screen and (max-width:640px) {
-    body{
-        margin: 3rem 10px;
-        padding: 3rem 0px;
-    }
-  }
-
