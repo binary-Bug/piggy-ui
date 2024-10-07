@@ -1,9 +1,10 @@
 name: UI Master Status Check 🤠
 
 on:
-  push:
-    branches:
-      - "master"
+  # push:
+  #   branches:
+  #     - "master"
+  workflow_dispatch:
 env:
   MAJOR: ${{ vars.MAJOR }}
 
@@ -20,11 +21,6 @@ jobs:
           x: ${{ vars.MINOR }}
           y: 1
       - uses: actions/checkout@v3
-      - name: Update Minor Version Repo Variable
-        run: |
-          gh variable set MINOR --body "${{steps.minor.outputs.plus}}"
-        env:
-          GITHUB_TOKEN: ${{secrets.TOKEN}}
       - name: Trigger jenkins reset-job-build-number job
         uses: joshlk/jenkins-githubaction@master
         with:
@@ -64,6 +60,11 @@ jobs:
       - name: Print Patch Number
         run: |
           echo "${{ steps.calc.outputs.minus }}"
+      - name: Update Minor Version Repo Variable
+        run: |
+          gh variable set MINOR --body "${{steps.minor.outputs.plus}}"
+        env:
+          GITHUB_TOKEN: ${{secrets.TOKEN}}
       - name: Create Release
         uses: maxkomarychev/oction-create-release@v0.7.1
         id: my_step_id

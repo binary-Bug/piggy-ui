@@ -1,3 +1,4 @@
+import * as version from '../../../configs/version.json';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
@@ -52,6 +53,7 @@ export class WelcomeComponent {
 
   isRegister: boolean = false;
   formTitle: string = 'Login Form';
+  version: string = version.version;
 
   applyFormValidations(forms: Array<FormGroup>): void {
     forms.forEach((form) => {
