@@ -24,7 +24,7 @@ jobs:
         uses: joshlk/jenkins-githubaction@master
         id: jenkins
         with:
-          url: "http://binarybug-jenkins.centralindia.cloudapp.azure.com:8080/"
+          url: "http://jenkins-binary.centralindia.cloudapp.azure.com:8080/"
           job_name: "piggy_ui_pre_deploy_check"
           username: "binarybug"
           timeout: "600"
@@ -67,7 +67,7 @@ jobs:
         uses: joshlk/jenkins-githubaction@master
         id: jenkins
         with:
-          url: "http://binarybug-jenkins.centralindia.cloudapp.azure.com:8080/"
+          url: "http://jenkins-binary.centralindia.cloudapp.azure.com:8080/"
           job_name: "piggy_ui_pre_deploy_check"
           username: "binarybug"
           timeout: "900"

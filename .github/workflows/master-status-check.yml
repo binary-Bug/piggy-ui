@@ -24,7 +24,7 @@ jobs:
       - name: Trigger jenkins reset-job-build-number job
         uses: joshlk/jenkins-githubaction@master
         with:
-          url: "http://binarybug-jenkins.centralindia.cloudapp.azure.com:8080/"
+          url: "http://jenkins-binary.centralindia.cloudapp.azure.com:8080/"
           job_name: "Reset-Job-Build-Number"
           username: "binarybug"
           timeout: "10"
@@ -35,7 +35,7 @@ jobs:
         uses: joshlk/jenkins-githubaction@master
         id: jenkins
         with:
-          url: "http://binarybug-jenkins.centralindia.cloudapp.azure.com:8080/"
+          url: "http://jenkins-binary.centralindia.cloudapp.azure.com:8080/"
           job_name: "piggy_ui_pre_deploy_check"
           username: "binarybug"
           timeout: "900"
