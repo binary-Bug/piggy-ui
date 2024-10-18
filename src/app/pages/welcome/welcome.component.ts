@@ -1,8 +1,5 @@
 import * as version from '../../../configs/version.json';
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs/internal/Observable';
-import { apiurl } from '../../../configs/config';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import {
@@ -12,18 +9,21 @@ import {
   Validators,
 } from '@angular/forms';
 import { roleSelectionRequired } from '../../../Validators/form.validators';
+import { ApiService } from '../../../Services/api.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-welcome',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
+  providers: [],
   templateUrl: './welcome.component.html',
   styleUrl: './welcome.component.css',
 })
 export class WelcomeComponent {
   loginForm = new FormGroup({
-    loginEmail: new FormControl(null, Validators.required),
-    loginPassword: new FormControl(null, Validators.required),
+    loginEmail: new FormControl<string | null>(null, Validators.required),
+    loginPassword: new FormControl<string | null>(null, Validators.required),
   });
 
   registerform = new FormGroup({
@@ -39,7 +39,11 @@ export class WelcomeComponent {
     restaurentName: new FormControl(null),
   });
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(
+    private apiService: ApiService,
+    private router: Router,
+    private toastr: ToastrService
+  ) {
     this.applyFormValidations([this.loginForm, this.registerform]);
 
     this.registerform.controls.roleSelect.valueChanges.subscribe(() => {
@@ -73,10 +77,6 @@ export class WelcomeComponent {
     });
   }
 
-  getData(): Observable<any> {
-    return this.http.get<any>(apiurl + 'weatherforecast/get/v1');
-  }
-
   onToggleForm(
     loginradio: HTMLInputElement,
     signupradio: HTMLInputElement
@@ -88,8 +88,24 @@ export class WelcomeComponent {
   }
 
   onLogin(): void {
-    console.log(this.loginForm.value);
-    if (false) this.router.navigate(['home']);
+    this.apiService
+      .login({
+        loginEmail: this.loginForm.value.loginEmail,
+        loginPassword: this.loginForm.value.loginPassword,
+      })
+      .subscribe(
+        (res) => {
+          console.log('ok resposne is ' + res);
+          this.router.navigate(['home']);
+        },
+        (error) => {
+          this.toastr.toastrConfig.positionClass = 'toast-bottom-full-width';
+          this.toastr.toastrConfig.progressBar = true;
+          this.toastr.error('Please enter valid credentials', 'Invalid', {
+            timeOut: 3000,
+          });
+        }
+      );
   }
 
   onRegister(): void {
