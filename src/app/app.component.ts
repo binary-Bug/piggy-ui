@@ -1,16 +1,16 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { WelcomeComponent } from './pages/welcome/welcome.component';
 import { HttpClient } from '@angular/common/http';
 import { apiurl } from '../configs/config';
 import { CommonModule } from '@angular/common';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { FooterComponent } from './footer/footer.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, WelcomeComponent, CommonModule, NgxSpinnerModule],
+  imports: [RouterOutlet, CommonModule, NgxSpinnerModule, FooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

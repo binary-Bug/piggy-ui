@@ -14,7 +14,7 @@
     </div>
     <div class="flex justify-center lg:justify-end">
       <img
-        src="../assets/logo.ico"
+        src="../../../assets/logo.ico"
         class="w-[60px] h-[60px] sm:w-[80px] sm:h-[80px]"
       />
     </div>
@@ -31,9 +31,7 @@
       <div class="slide-controls">
         <input
           #loginRadio
-          (click)="
-            onToggleForm(loginRadio, signupRadio); updateClass(formContainer)
-          "
+          (click)="onToggleForm(); updateClass()"
           type="radio"
           name="slide"
           id="login"
@@ -41,9 +39,7 @@
         />
         <input
           #signupRadio
-          (click)="
-            onToggleForm(loginRadio, signupRadio); updateClass(formContainer)
-          "
+          (click)="onToggleForm(); updateClass()"
           type="radio"
           name="slide"
           id="signup"
@@ -94,10 +90,7 @@
         <div class="text-center mt-5 text-[15px]">
           <p>
             Not a member?<span
-              (click)="
-                onToggleForm(loginRadio, signupRadio);
-                updateClass(formContainer)
-              "
+              (click)="onToggleForm(); updateClass()"
               class="text-blue-500"
               style="cursor: context-menu"
               ><a>SignUp Now</a></span
@@ -164,8 +157,9 @@
             class="mt-4 shadow border-b-2 border-t border-l border-r rounded-lg py-3 px-2 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline ml-3 mr-3"
           >
             <option value="none" hidden>Select a region</option>
-            <option value="vin">Vinland</option>
-            <option value="got">Gotham</option>
+            <option *ngFor="let region of regions" [value]="region.id">
+              {{ region.label }}
+            </option>
           </select>
           <input
             *ngIf="registerform.controls.roleSelect.value === 'rowner'"
@@ -177,6 +171,22 @@
             type="input"
             class="mt-4 shadow appearance-none border-b-2 border-t border-l border-r rounded-lg py-3 px-2 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline ml-3 mr-3"
           />
+          <select
+            *ngIf="registerform.controls.roleSelect.value === 'rowner'"
+            formControlName="restaurentType"
+            id="restaurentType"
+            name="Restaurent Type"
+            aria-autocomplete="none"
+            class="mt-4 shadow border-b-2 border-t border-l border-r rounded-lg py-3 px-2 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline ml-3 mr-3"
+          >
+            <option value="none" hidden>Select the type of restaurent</option>
+            <option
+              *ngFor="let res of restaurentTypes"
+              [value]="res.restaurentTypeId"
+            >
+              {{ res.restaurentTypeLabel }}
+            </option>
+          </select>
         </div>
         <div class="grid place-content-center">
           <button
@@ -196,3 +206,5 @@
     </div>
   </div>
 </div>
+
+<app-about></app-about>

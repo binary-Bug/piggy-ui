@@ -10,19 +10,18 @@
 
 .background {
   width: 100%;
-  height: 650px;
+  height: 750px;
   background: -webkit-linear-gradient(left, #003366, #004080, #0059b3, #0073e6);
 }
 
-@media screen and (min-width: 400px) and (max-width: 640px) {
+@media screen and (min-width: 450px) and (max-width: 640px) {
   .background {
     width: 100%;
-    height: 500px;
     background: rgb(228, 227, 227);
   }
 }
 
-@media screen and (min-width: 0px) and (max-width: 400px) {
+@media screen and (min-width: 0px) and (max-width: 450px) {
   .background {
     background: white;
   }
