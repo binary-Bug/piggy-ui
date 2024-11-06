@@ -14,6 +14,14 @@ export class ApiService {
     return this.http.get<any>(apiurl + 'weatherforecast/get/v1');
   }
 
+  getRegions(): Observable<any> {
+    return this.http.get<any>(apiurl + 'Region/allRegions');
+  }
+
+  getRestaurentTypes(): Observable<any> {
+    return this.http.get<any>(apiurl + 'Restaurent/types');
+  }
+
   login(credentials: {
     loginEmail?: string | null;
     loginPassword?: string | null;
@@ -23,6 +31,35 @@ export class ApiService {
       {
         usernameOrEmail: credentials.loginEmail,
         password: credentials.loginPassword,
+      },
+      { responseType: 'text' as const }
+    );
+  }
+
+  registerUser(formData: any): Observable<string> {
+    return this.http.post(
+      apiurl + 'register/user',
+      {
+        email: formData.registerEmail,
+        userName: formData.registerUsername,
+        password: formData.registerPassword,
+        phoneNumber: formData.registerNumber,
+        regionId: formData.regionSelect,
+      },
+      { responseType: 'text' as const }
+    );
+  }
+
+  registerRestaurent(formData: any): Observable<string> {
+    return this.http.post(
+      apiurl + 'register/restaurent',
+      {
+        email: formData.registerEmail,
+        userName: formData.registerUsername,
+        password: formData.registerPassword,
+        phoneNumber: formData.registerNumber,
+        restaurentName: formData.restaurentName,
+        restaurentTypeId: formData.restaurentType,
       },
       { responseType: 'text' as const }
     );
